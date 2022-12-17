@@ -15,7 +15,7 @@ struct GameView: View {
         VStack(spacing: 16) {
             HStack {
                 Button {
-                    print("quit")
+                    print("Выход")
                 } label: {
                     Text("Выход")
                         .padding(6)
