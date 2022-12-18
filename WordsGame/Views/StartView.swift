@@ -14,6 +14,8 @@ struct StartView: View {
     @State var secondPlayer = ""
 
     @State var isShowGame = false
+    @State var isAlertPresentes = false
+
     
     var body: some View {
         
@@ -32,7 +34,13 @@ struct StartView: View {
                 .padding(.horizontal)
             
             Button {
-                isShowGame.toggle()
+                if bigWord.count > 7 {
+                    isShowGame.toggle()
+                }
+                else{
+                    self.isAlertPresentes.toggle()
+                }
+                
             } label: {
                 Text("Старт")
                     .font(.custom("AvenirNext_Bold", size: 30))
@@ -44,9 +52,10 @@ struct StartView: View {
                     .padding(.top)
                           
             }
-
-            
         }.background(Image("backPhoto"))
+            .alert("Длинное слово слишком короткое", isPresented: $isAlertPresentes, actions: {
+                Text("Хорошо!")
+            })
             .fullScreenCover(isPresented: $isShowGame) {
                 let player1 = Player(name: self.firstPlayer)
                 let player2 = Player(name: self.secondPlayer)
