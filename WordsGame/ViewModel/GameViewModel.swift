@@ -24,7 +24,7 @@ class GameViewModel: ObservableObject {
     
     func validate(word:String) -> Bool{
         
-        let word = word.uppercased()
+        
         guard word != self.word else{
             print("Думаешь самый умный? Составленное слово не должно быть исходным словом")
             return false
@@ -42,7 +42,7 @@ class GameViewModel: ObservableObject {
         return true
     }
     
-    func wordToChars(wprd: String) -> [Character]{
+    func wordToChars(word: String)  -> [Character]{
         
         var chars = [Character]()
         
@@ -51,12 +51,14 @@ class GameViewModel: ObservableObject {
         }
         return chars
     }
+    
     func check(word: String) -> Int{
+        let word = word.uppercased()
         guard self.validate(word: word) else {
             return 0
         }
-        var bigWordArray = wordToChars(wprd: self.word)
-        var smallWordArray = wordToChars(wprd: word)
+        var bigWordArray = wordToChars(word: self.word)
+        let smallWordArray = wordToChars(word:  word)
         var result = ""
         
         
@@ -73,15 +75,15 @@ class GameViewModel: ObservableObject {
                 return 0
             }
         }
-        guard result == word.uppercased() else {
-            print("Неизвестная ошибка")
-            return 0
-        }
+//        guard result == word.uppercased() else {
+//            print("Неизвестная ошибка")
+//            return 0
+//        }
         words.append(result)
         if isFirst {
-            player1.add(score: result.count)
+            player1.score += result.count
         }else{
-            player2.add(score: result.count)
+            player2.score += result.count
         }
         isFirst.toggle()
         

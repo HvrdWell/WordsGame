@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     
     @State private var word = ""
+    var viewModel: GameViewModel 
     
     var body: some View {
         VStack(spacing: 16) {
@@ -22,16 +23,18 @@ struct GameView: View {
                         .padding(.horizontal)
                         .background(Color(.orange))
                         .cornerRadius(10)
-                        .font(.custom("AvenirNext_Bold", size: 15))
+                        .font(.custom("AvenirNext-Bold", size: 15))
                         .foregroundColor(.white)
                 }
                 Spacer()
             }
-            TitleText(text: "Магнитотерапия")
+            Text(viewModel.word)
+                .font(.custom("AvenirNext-Bold", size: 30))
+                .foregroundColor(.white)
             HStack(spacing: 12) {
                 VStack {
-                    Text("0").font(.custom("AvenirNext_Bold", size: 60))
-                    Text("Вася").font(.custom("AvenirNext_Bold", size: 24))
+                    Text("\(viewModel.player1.score)").font(.custom("AvenirNext-Bold", size: 60))
+                    Text("\(viewModel.player1.name)").font(.custom("AvenirNext-Bold", size: 24))
                 }.padding(20)
                     .frame(width: screen.width/2.2,height: screen.height/4.5)
                 .background(Color("FirstPlayer"))
@@ -39,8 +42,8 @@ struct GameView: View {
                 .shadow(color: .purple, radius: 4)
                 
                 VStack {
-                    Text("0").font(.custom("AvenirNext_Bold", size: 60))
-                    Text("Петя").font(.custom("AvenirNext_Bold", size: 24))
+                    Text("\(viewModel.player2.score)").font(.custom("AvenirNext-Bold", size: 60))
+                    Text("\(viewModel.player2.name)").font(.custom("AvenirNext-Bold", size: 24))
                 }.padding(20)
                     .frame(width: screen.width/2.2,height: screen.height/4.5)
                 .background(Color("SecondPlayer"))
@@ -48,11 +51,15 @@ struct GameView: View {
                 .shadow(color: .pink, radius: 4)
             }
             
-            TextFieldText(word: $word, placeholder: "Ваше слово")
+            TextFieldText(word: $word,
+                          placeholder: "Ваше слово")
                 .padding(.horizontal)
             Button {
-                print("ready")
-                self.word = ""
+                let score = viewModel.check(word: word)
+                if score > 1 {
+                    self.word = ""
+                }
+
             } label: {
                 Text("Готово")
                     .padding(12)
@@ -60,7 +67,7 @@ struct GameView: View {
                     .foregroundColor(.white)
                     .background(Color(.orange))
                     .cornerRadius(30)
-                    .font(.custom("AvenirNext_Bold", size: 20))
+                    .font(.custom("AvenirNext-Bold", size: 20))
                     .padding(.horizontal)
             }
             List{
@@ -75,6 +82,9 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView(viewModel: GameViewModel(
+            player1: Player(name: "Вася"),
+            player2: Player(name: "Федя"),
+            word: "рентгеноэлектрокардиографического"))
     }
 }
