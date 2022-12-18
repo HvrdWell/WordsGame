@@ -75,10 +75,10 @@ class GameViewModel: ObservableObject {
                 return 0
             }
         }
-//        guard result == word.uppercased() else {
-//            print("Неизвестная ошибка")
-//            return 0
-//        }
+        guard result == word.uppercased() else {
+            print("Неизвестная ошибка")
+            return 0
+        }
         words.append(result)
         if isFirst {
             player1.score += result.count
