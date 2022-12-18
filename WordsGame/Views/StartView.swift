@@ -57,8 +57,11 @@ struct StartView: View {
                 Text("Хорошо!")
             })
             .fullScreenCover(isPresented: $isShowGame) {
-                let player1 = Player(name: self.firstPlayer)
-                let player2 = Player(name: self.secondPlayer)
+                let name1 = firstPlayer == "" ? "Игрок 1" : firstPlayer
+                let name2 = secondPlayer == "" ? "Игрок 2" : secondPlayer
+
+                let player1 = Player(name: name1)
+                let player2 = Player(name: name2)
                 
                 let gameViewModel = GameViewModel(player1: player1, player2: player2, word: bigWord)
 

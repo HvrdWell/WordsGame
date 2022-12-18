@@ -7,6 +7,16 @@
 
 import Foundation
 
+enum WordError: Error{
+    
+    case theSameWord
+    case beforeWord
+    case littleWord
+    case wrongWord
+    case undefinedError
+    
+}
+
 class GameViewModel: ObservableObject {
     
     @Published var player1: Player
@@ -22,24 +32,24 @@ class GameViewModel: ObservableObject {
         self.word = word.uppercased()
     }
     
-    func validate(word:String) -> Bool{
+    func validate(word:String)  throws {
         
         
         guard word != self.word else{
             print("Думаешь самый умный? Составленное слово не должно быть исходным словом")
-            return false
+            throw WordError.theSameWord
         }
         guard !(words.contains(word)) else {
             print("Прояви фантазию! Придумай новое слово")
-            return false
+            throw WordError.beforeWord
         }
         
         guard word.count > 1 else{
-            print("Слишком котроткое слово")
-            return false
+            print("Слишком короткое слово")
+            throw WordError.littleWord
         }
         
-        return true
+        return
     }
     
     func wordToChars(word: String)  -> [Character]{
@@ -52,11 +62,13 @@ class GameViewModel: ObservableObject {
         return chars
     }
     
-    func check(word: String) -> Int{
+    func check(word: String)  throws -> Int{
         let word = word.uppercased()
-        guard self.validate(word: word) else {
-            return 0
-        }
+        do{
+            try self.validate(word: word)
+        }catch{
+                throw error
+            }
         var bigWordArray = wordToChars(word: self.word)
         let smallWordArray = wordToChars(word:  word)
         var result = ""
@@ -71,8 +83,7 @@ class GameViewModel: ObservableObject {
                 }
                 bigWordArray.remove(at: i)
             }else{
-                print("Такое слово не может быть составлено")
-                return 0
+                throw WordError.wrongWord
             }
         }
         guard result == word.uppercased() else {

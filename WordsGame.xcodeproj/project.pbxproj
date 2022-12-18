@@ -16,6 +16,7 @@
 		93065511294D170600EE9327 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93065510294D170600EE9327 /* GameView.swift */; };
 		93542FDC294E575200E4FBF1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93542FDB294E575200E4FBF1 /* Player.swift */; };
 		93542FE0294E586B00E4FBF1 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93542FDF294E586B00E4FBF1 /* GameViewModel.swift */; };
+		937081D7294FC9EA00250972 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937081D6294FC9EA00250972 /* WordCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		93065510294D170600EE9327 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		93542FDB294E575200E4FBF1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		93542FDF294E586B00E4FBF1 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		937081D6294FC9EA00250972 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				9306550C294D13A900EE9327 /* TitleText.swift */,
 				9306550E294D144800EE9327 /* TextFieldText.swift */,
+				937081D6294FC9EA00250972 /* WordCell.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				9306550D294D13A900EE9327 /* TitleText.swift in Sources */,
 				930654FE294D0C1500EE9327 /* WordsGameApp.swift in Sources */,
 				93542FDC294E575200E4FBF1 /* Player.swift in Sources */,
+				937081D7294FC9EA00250972 /* WordCell.swift in Sources */,
 				93065511294D170600EE9327 /* GameView.swift in Sources */,
 				93542FE0294E586B00E4FBF1 /* GameViewModel.swift in Sources */,
 			);
